@@ -3,28 +3,40 @@
   padding: 0;
   box-sizing: border-box;
   font-optical-sizing: auto;
+  scrollbar-width: none;
 }
 
 body {
-  /* background: #141414; */
-  background: #191919;
-  width: 100vw;
+  background: #696969;
   color: #ddd;
   line-height: 1.5;
   font-family: "Oswald", sans-serif;
   font-weight: 500;
   font-style: normal;
+  overflow: hidden;
+}
+
+main {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+  overflow: scroll;
+  scroll-snap-points-y: repeat(100vh);
+  height: 100vh;
 }
 
 /* each view should only be of a whole section */
 section {
+  scroll-snap-align: start;
+  position: relative;
+  background: #141414;
   filter: none;
   height: 100vh;
-  width: 100%;
+  width: 100vw;
   display: flex;
   align-items: center;
   flex-direction: column;
   padding: 2%;
+  flex-shrink: 0;
 }
 
 section.hero {
@@ -59,11 +71,11 @@ section.hero {
       border-radius: 25px;
 
       .avatar {
-        filter: grayscale(1);
-        box-shadow: 0 0 25px white;
+        /* filter: grayscale(1); */
+        box-shadow: 0 0 25px black;
         height: 100%;
         width: 100%;
-        border-radius: 25px;
+        border-radius: 10px;
       }
     }
 
