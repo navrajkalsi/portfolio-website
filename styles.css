@@ -1,0 +1,92 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-optical-sizing: auto;
+}
+
+body {
+  /* background: #141414; */
+  background: #191919;
+  width: 100vw;
+  color: #ddd;
+  line-height: 1.5;
+  font-family: "Oswald", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* each view should only be of a whole section */
+section {
+  filter: none;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 2%;
+}
+
+section.hero {
+  justify-content: space-evenly;
+
+  h2 {
+    font-family: "Outfit", sans-serif;
+    font-weight: inherit;
+    font-size: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  h1 {
+    font-family: "Outfit", sans-serif;
+    font-weight: inherit;
+    display: flex;
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    opacity: 0;
+    scale: 0.8;
+  }
+
+  .info {
+    margin: 5%;
+    height: 25%;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+
+    .avatar-container {
+      height: 100%;
+      aspect-ratio: 1/1;
+      border-radius: 25px;
+
+      .avatar {
+        filter: grayscale(1);
+        box-shadow: 0 0 25px white;
+        height: 100%;
+        width: 100%;
+        border-radius: 25px;
+      }
+    }
+
+    .info-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-size: clamp(1.0rem, 2vw, 2rem);
+    }
+  }
+}
+
+.bold {
+  font-weight: 900;
+}
+
+.italic {
+  /* font-style: italic; */
+  padding: 0;
+}
+
+.highlight-text {
+  /* text-shadow: 0 0 5px white; */
+  padding: 0 1rem;
+  text-wrap: nowrap;
+}
