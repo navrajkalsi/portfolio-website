@@ -18,37 +18,46 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollSmoother.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollToPlugin.min.js"></script>
   <!-- markdown -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
 </head>
 
 <body class="font-mono">
-  <main>
-    <section class="hero">
-      <h2 class="reveal-y">Hello,</h2>
-      <br>
-      <h1 class="scale-up">I'm<span class="bold italic highlight-text">Navraj Kalsi</span></h1>
+  <div id="waves">
+    <img src="waves.gif" />
+  </div>
 
-      <div class="info">
-        <div class="avatar-container">
-          <img class="avatar" />
-        </div>
+  <div id="scroll-wrapper">
+    <div id="scroll-content">
+      <section class="hero">
+        <h2 class="reveal-y">Hello,</h2>
+        <br>
+        <h1 class="scale-up">I'm
+          <span class="bold italic highlight-text" data-speed="clamp(0.8)">Navraj Kalsi</span>
+        </h1>
 
-        <div class="info-text">
-          Always learning and building something.
-          <br>
-          Explore my programming projects below.
+        <div class="info">
+          <div class="avatar-container">
+            <img class="avatar" />
+          </div>
+
+          <div class="info-text">
+            Always learning and building something.
+            <br>
+            Explore my programming projects below.
+          </div>
         </div>
-      </div>
-    </section>
-    <section>
-      hello
-    </section>
-    <section>
-      hello
-    </section>
-  </main>
+      </section>
+      <section>
+        hello
+      </section>
+      <section>
+        hello
+      </section>
+    </div>
+  </div>
   <script src="gsap.js"></script>
 </body>
 
