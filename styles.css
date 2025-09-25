@@ -65,41 +65,53 @@ h1 {
 
 /* each view should only be of a whole section */
 section {
-  position: relative;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: auto auto;
   padding: 2%;
+  gap: 2.5%;
+
+  h1.title {
+    grid-column: 1;
+    grid-row: 1;
+  }
 
   div.demo {
+    grid-column: 1;
+    grid-row: 2;
     box-shadow: 0 0 10px white;
   }
 
-  div.project {
-    overflow: hidden;
-
-    div.readme {
-      text-wrap: wrap;
-      overflow-y: hidden;
-    }
+  div.readme {
+    grid-column: 2;
+    grid-row: 1/3;
+    max-height: 100vh;
+    overflow-y: hidden;
+    text-overflow: ellipsis;
   }
+
 }
 
 section.hero {
+  display: flex !important;
   flex-direction: column !important;
   justify-content: space-evenly;
+  text-align: center;
 
   div.scale-up {
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 1rem;
   }
 
   .info {
-    margin: 5%;
+    margin: 5% 0;
     height: 30%;
     display: flex;
     flex-direction: row;
     width: 100%;
+    align-content: center;
     justify-content: space-around;
 
     .avatar-container {
@@ -131,6 +143,8 @@ section.hero {
 
 .highlight-text {
   text-wrap: nowrap;
+  position: relative;
+  width: fit-content;
 }
 
 .highlight-text::after {

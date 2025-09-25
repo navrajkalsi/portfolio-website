@@ -67,7 +67,7 @@ async function fill_sections() {
       branch = get_default_branch(github_repos[i].id);
 
     // setting repo name
-    section.querySelector("div.title").textContent = repo;
+    section.querySelector("div.title").firstElementChild.textContent = repo;
 
     // filling readme
     {
@@ -76,7 +76,7 @@ async function fill_sections() {
       if (readme_response.status >= 400)
         readme_div.textContent = `An error occurred while fetching README for this repo: ${readme_response.status}`;
       else
-        readme_div.innerHTML = mark_to_html(await readme_response.text());
+        readme_div.textContent = mark_to_html(await readme_response.text());
     }
 
 
@@ -105,12 +105,8 @@ async function handle_sections() {
   fill_sections();
 }
 
-
-fill_repos().then(handle_sections);
-
-// creating and filling sections
-
 document.addEventListener("DOMContentLoaded", () => {
   handle_hero();
+  fill_repos().then(handle_sections);
 });
 
