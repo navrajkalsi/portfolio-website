@@ -1,31 +1,63 @@
+:root {
+  --text-color-light: #ddd;
+  --background-light: #141414;
+  --accent: #fa1919;
+  --primary-font: normal 500 clamp(1rem, 2vw, 2rem) "Oswald", sans-serif;
+  --secondary-font: normal 500 clamp(1.5rem, 4vw, 3rem) "Outfit", sans-serif;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.bold {
+  font-weight: 900;
+}
+
+html {
   font-optical-sizing: auto;
   scrollbar-width: none;
+  line-height: 1.5;
+}
+
+section,
+#waves {
+  width: 100vw;
+  height: 100vh;
+  flex-shrink: 0;
 }
 
 body {
-  background: #141414;
-  color: #ddd;
-  line-height: 1.5;
-  font-family: "Oswald", sans-serif;
-  font-weight: 500;
-  font-style: normal;
+  background: var(--background-light);
+  color: var(--text-color-light);
+  font: var(--primary-font);
+}
+
+h1,
+h2 {
+  font: var(--secondary-font);
+}
+
+h1 {
+  font-size: clamp(2.5rem, 8vw, 6rem);
+}
+
+.scale-up {
+  opacity: 0;
+  scale: 0.8;
 }
 
 #waves {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
   z-index: -1;
   pointer-events: none;
 
   img {
-    opacity: 0.1;
+    opacity: 0.25;
     width: 100%;
     height: 100%;
   }
@@ -33,33 +65,19 @@ body {
 
 /* each view should only be of a whole section */
 section {
-  background: transparent;
-  filter: none;
-  height: 100vh;
-  width: 100vw;
+  position: relative;
   display: flex;
   align-items: center;
   flex-direction: column;
   padding: 2%;
-  flex-shrink: 0;
 }
 
 section.hero {
   justify-content: space-evenly;
 
-  h2 {
-    font-family: "Outfit", sans-serif;
-    font-weight: inherit;
-    font-size: clamp(1.5rem, 4vw, 3rem);
-  }
-
-  h1 {
-    font-family: "Outfit", sans-serif;
-    font-weight: inherit;
+  div.scale-up {
     display: flex;
-    font-size: clamp(1.5rem, 4vw, 3rem);
-    opacity: 0;
-    scale: 0.8;
+    gap: 1rem;
   }
 
   .info {
@@ -76,11 +94,11 @@ section.hero {
 
       .avatar {
         /* filter: grayscale(1); */
-        box-shadow: 0 0 25px black;
+        box-shadow: 0 0 50px black;
         height: 100%;
         width: 100%;
         border-radius: 50%;
-        transition: all 0.5s ease;
+        transition: all 0.3s ease;
       }
 
       .avatar:hover {
@@ -93,35 +111,19 @@ section.hero {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      font-size: clamp(1.0rem, 2vw, 2rem);
     }
   }
 }
 
-.bold {
-  font-weight: 900;
-}
-
-.italic {
-  /* font-style: italic; */
-  padding: 0;
-}
-
 .highlight-text {
-  /* text-shadow: 0 0 5px white; */
-  margin: 0 1rem;
   text-wrap: nowrap;
-  /* color: rgb(200, 25, 25); */
-  font-size: clamp(2.5rem, 8vw, 6rem);
-  position: relative;
-  display: inline-block;
 }
 
 .highlight-text::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: -10px;
   /* distance under text */
   width: 0;
   /* start hidden */

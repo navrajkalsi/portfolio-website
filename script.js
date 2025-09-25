@@ -1,20 +1,18 @@
-const profile_readme = "https://raw.githubusercontent.com/navrajkalsi/navrajkalsi/main/README.md",
-  user_url = "https://api.github.com/users/navrajkalsi",
+const user_url = "https://api.github.com/users/navrajkalsi",
   repos_url = `${user_url}/repos`,
   repo_order = [ // only change this to order the repos
     "server-c",
     "forexpy",
     ".dotfiles"
   ],
-  repo_url_prefix = "https://api.github.com/repos/navrajkalsi";
+  repo_url_prefix = "https://api.github.com/repos/navrajkalsi",
+  content_url_prefix = "https://raw.githubusercontent.com/navrajkalsi";
 
-async function fetch_url(url) {
+let github_repos, // will contain the repos from github in JSON
+  nothing;
+
+async function fetch_json(url) {
   const response = await fetch(url);
-  return response;
-};
-
-async function fetch_url_json(url) {
-  const response = await fetch_url(url);
   return response.json();
 };
 
@@ -24,29 +22,71 @@ function mark_to_html(markdown) {
   return DOMPurify.sanitize(parsed);
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-  handle_hero();
-  get_repos();
-});
-
+// anything to deal with hero section
 async function handle_hero() {
   // Avatar
-  const user_json = await fetch_url_json(user_url);
+  const user_json = await fetch_json(user_url);
   document.querySelector("img.avatar").src = await user_json.avatar_url;
-
-  // Profile README
-  // const readme = await fetch_url(profile_readme);
-  // document.querySelector(".info-text").innerHTML = mark_to_html(await readme.text());
 }
 
-async function get_repos() {
-  const repos_response = await fetch_url(repos_url);
-  const repos_json = await repos_response.json();
-  console.log(repos_json);
-  let repos_text = "";
-  for (repo of repos_json) {
-    repos_text += "\n";
-    repos_text += repo.name;
+// assigns global var github_repos to JSON object containing all public repos
+async function fill_repos() {
+  github_repos = await fetch(repos_url);
+  github_repos = await github_repos.json();
+}
+
+// returns the default branch name of a repo, given the id from repos json
+function get_default_branch(id) {
+  for (repo of github_repos)
+    if (repo.id === id)
+      return repo.default_branch;
+    else
+      continue;
+}
+
+// creates i copies of last demo section, including the said section
+function create_sections() {
+  const sample_section = document.querySelectorAll("section")[1];
+
+  // creating and appending new sections
+  for (let i = 1; i < github_repos.length; i++) {
+    const new_section = sample_section.cloneNode(true);
+    document.getElementById("scroll-content").appendChild(new_section);
   }
 }
+
+// fills all the sections in order of the array declared on top
+async function fill_sections() {
+  const sections = document.querySelectorAll("section");
+
+  for (let i = 0; i < repo_order.length; i++) {
+    const section = sections[i + 1],
+      repo = github_repos[i].name,
+      branch = get_default_branch(github_repos[i].id);
+
+    section.querySelector("div.demo").querySelector("img").src =
+      `${content_url_prefix}/${repo}/${branch}/media/demo.gif`;
+  }
+}
+
+async function handle_sections() {
+  // orders and removes repos not in repo_order
+  github_repos = repo_order
+    .map(repo => github_repos
+      .find(github_repo => github_repo.name === repo))
+    .filter(Boolean);
+
+  // creating required number of sections & filling them
+  create_sections();
+  fill_sections();
+}
+
+
+fill_repos().then(handle_sections);
+
+// creating and filling sections
+
+document.addEventListener("DOMContentLoaded", () => {
+  handle_hero();
+});
 

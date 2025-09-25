@@ -28,5 +28,5 @@ gsap.to(".scale-up", { opacity: 1, scale: 1, duration: 1, delay: 0.5 });
 gsap.from(".info", { opacity: 0, y: 100, duration: 0.75, delay: 1.5 });
 
 setTimeout(() => {
-  document.querySelector("span.highlight-text").classList.add("underline");
+  document.querySelector(".highlight-text").classList.add("underline");
 }, 750);
