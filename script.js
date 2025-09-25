@@ -105,8 +105,11 @@ async function handle_sections() {
   fill_sections();
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   handle_hero();
-  fill_repos().then(handle_sections);
+
+  await fill_repos();
+  await handle_sections();
+  animate();
 });
 
