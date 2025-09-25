@@ -61,11 +61,35 @@ async function fill_sections() {
 
   for (let i = 0; i < repo_order.length; i++) {
     const section = sections[i + 1],
+      demo_div = section.querySelector("div.demo"),
+      readme_div = section.querySelector("div.readme"),
       repo = github_repos[i].name,
       branch = get_default_branch(github_repos[i].id);
 
-    section.querySelector("div.demo").querySelector("img").src =
-      `${content_url_prefix}/${repo}/${branch}/media/demo.gif`;
+    // setting repo name
+    section.querySelector("div.title").textContent = repo;
+
+    // filling readme
+    {
+      const readme_response = await fetch(`${content_url_prefix}/${repo}/${branch}/README.md`);
+
+      if (readme_response.status >= 400)
+        readme_div.textContent = `An error occurred while fetching README for this repo: ${readme_response.status}`;
+      else
+        readme_div.innerHTML = mark_to_html(await readme_response.text());
+    }
+
+
+    // checking request status, if starts with 4xx or 5xx then deleting demo div
+    {
+      const gif_response = await fetch(`${content_url_prefix}/${repo}/${branch}/media/demo.gif`);
+
+      // error
+      if (gif_response.status >= 400)
+        section.removeChild(demo_div);
+      else
+        demo_div.firstElementChild.src = `${content_url_prefix}/${repo}/${branch}/media/demo.gif`;
+    }
   }
 }
 

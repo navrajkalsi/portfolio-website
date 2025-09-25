@@ -68,11 +68,25 @@ section {
   position: relative;
   display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
   padding: 2%;
+
+  div.demo {
+    box-shadow: 0 0 10px white;
+  }
+
+  div.project {
+    overflow: hidden;
+
+    div.readme {
+      text-wrap: wrap;
+      overflow-y: hidden;
+    }
+  }
 }
 
 section.hero {
+  flex-direction: column !important;
   justify-content: space-evenly;
 
   div.scale-up {
