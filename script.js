@@ -22,6 +22,28 @@ function mark_to_html(markdown) {
   return DOMPurify.sanitize(parsed);
 };
 
+// removes elements from mark_elm that do not look good for the website
+// and returns the new sanitized elm
+// here mark_elm is the element containing the markdown
+function sanitize_mark_elm(mark_elm) {
+  // change this to alter the behaviour
+  const to_remove_arr = ["img", "h1"];
+
+  for (const to_remove of to_remove_arr) {
+    // list of the specific tag in the mark_html
+    const to_remove_elms = mark_elm.querySelectorAll(to_remove);
+
+    if (to_remove_elms)
+      // removing individual element
+      for (const to_remove_elm of to_remove_elms)
+        to_remove_elm.remove();
+    else
+      continue;
+  }
+
+  return mark_elm;
+}
+
 // anything to deal with hero section
 async function handle_hero() {
   // Avatar
@@ -75,8 +97,16 @@ async function fill_sections() {
 
       if (readme_response.status >= 400)
         readme_div.textContent = `An error occurred while fetching README for this repo: ${readme_response.status}`;
-      else
-        readme_div.textContent = mark_to_html(await readme_response.text());
+      else {
+        // converting readme markdown to html with tag names
+        let temp = document.createElement("div");
+        temp.innerHTML = mark_to_html(await readme_response.text());
+        // sanitizing the markdown html for this website
+        temp = sanitize_mark_elm(temp);
+        temp.classList.add("readme"); // readding readme class
+        readme_div.replaceWith(temp);
+      }
+
     }
 
 
