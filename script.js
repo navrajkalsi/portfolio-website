@@ -92,23 +92,22 @@ async function fill_sections() {
     section.querySelector("div.title").firstElementChild.textContent = repo;
 
     // filling readme
-    {
-      const readme_response = await fetch(`${content_url_prefix}/${repo}/${branch}/README.md`);
+    // {
+    //   const readme_response = await fetch(`${content_url_prefix}/${repo}/${branch}/README.md`);
 
-      if (readme_response.status >= 400)
-        readme_div.textContent = `An error occurred while fetching README for this repo: ${readme_response.status}`;
-      else {
-        // converting readme markdown to html with tag names
-        let temp = document.createElement("div");
-        temp.innerHTML = mark_to_html(await readme_response.text());
-        // sanitizing the markdown html for this website
-        temp = sanitize_mark_elm(temp);
-        temp.classList.add("readme"); // readding readme class
-        readme_div.replaceWith(temp);
-      }
+    //   if (readme_response.status >= 400)
+    //     readme_div.textContent = `An error occurred while fetching README for this repo: ${readme_response.status}`;
+    //   else {
+    //     // converting readme markdown to html with tag names
+    //     let temp = document.createElement("div");
+    //     temp.innerHTML = mark_to_html(await readme_response.text());
+    //     // sanitizing the markdown html for this website
+    //     temp = sanitize_mark_elm(temp);
+    //     temp.classList.add("readme"); // readding readme class
+    //     readme_div.replaceWith(temp);
+    //   }
 
-    }
-
+    // }
 
     // checking request status, if starts with 4xx or 5xx then deleting demo div
     {
