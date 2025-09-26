@@ -68,31 +68,39 @@ section {
   display: flex;
   flex-direction: column;
   align-content: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   padding: 2.5%;
   gap: 2.5%;
 
   div.title {
+    flex: 0 0 auto;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
+    h1.highlight-text {
+      cursor: pointer;
+    }
 
     button.github {
       background-color: #eee;
       margin: auto 0;
       height: clamp(2.5rem, 8vw, 6rem);
       border-radius: clamp(2.5rem, 8vw, 6rem);
-      padding: 1%;
+      padding: 1em;
+      gap: 1rem;
       display: flex;
       align-items: center;
-      width: fit-content;
-      border: none;
+      justify-content: space-evenly;
+      border: solid black 0.5em;
       outline: none;
       cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 0 10px white;
 
       span {
         text-wrap: nowrap;
-        font: normal 500 clamp(0.75rem, 1.25vw, 2rem) "Oswald", sans-serif;
+        font: normal 600 clamp(0.75rem, 1.25vw, 2rem) "Oswald", sans-serif;
       }
 
       img {
@@ -100,13 +108,27 @@ section {
         aspect-ratio: 1/1;
       }
     }
+
+    button.github:hover {
+      border-color: var(--accent);
+      box-shadow: none;
+    }
   }
 
   div.demo {
+    flex: 1 1 auto;
     box-shadow: 0 0 25px black;
-    margin: 0 auto;
-    height: fit-content;
-    width: fit-content;
+    margin: 2% auto;
+
+    img {
+      height: 100%;
+      max-width: 100%;
+    }
+  }
+
+  div.description {
+    flex: 0 0 auto;
+    margin-bottom: 5%;
   }
 }
 
@@ -121,6 +143,10 @@ section.hero {
     justify-content: center;
     align-items: center;
     gap: 1rem;
+
+    h1 {
+      cursor: pointer;
+    }
   }
 
   .info {

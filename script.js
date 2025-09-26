@@ -6,7 +6,8 @@ const user_url = "https://api.github.com/users/navrajkalsi",
     ".dotfiles"
   ],
   repo_url_prefix = "https://api.github.com/repos/navrajkalsi",
-  content_url_prefix = "https://raw.githubusercontent.com/navrajkalsi";
+  content_url_prefix = "https://raw.githubusercontent.com/navrajkalsi",
+  github_profile = "https://www.github.com/navrajkalsi";
 
 let github_repos, // will contain the repos from github in JSON
   nothing;
@@ -44,8 +45,15 @@ function sanitize_mark_elm(mark_elm) {
   return mark_elm;
 }
 
+function visit_url(url) {
+  window.open(url, "_blank");
+}
+
 // anything to deal with hero section
 async function handle_hero() {
+  // click event for name
+  document.querySelector("section.hero").querySelector("h1").onclick = () => visit_url(github_profile);
+
   // Avatar
   const user_json = await fetch_json(user_url);
   document.querySelector("img.avatar").src = await user_json.avatar_url;
@@ -84,12 +92,15 @@ async function fill_sections() {
   for (let i = 0; i < repo_order.length; i++) {
     const section = sections[i + 1],
       demo_div = section.querySelector("div.demo"),
-      readme_div = section.querySelector("div.readme"),
       repo = github_repos[i].name,
-      branch = get_default_branch(github_repos[i].id);
+      branch = get_default_branch(github_repos[i].id),
+      description = github_repos[i].description;
 
     // setting repo name
     section.querySelector("div.title").firstElementChild.textContent = repo;
+
+    // setting description of repo
+    section.querySelector("div.description").textContent = description;
 
     // filling readme
     // {
@@ -122,6 +133,18 @@ async function fill_sections() {
   }
 }
 
+function setup_repo_listeners() {
+  const sections = document.querySelectorAll("section");
+
+  for (let i = 0; i < repo_order.length; i++) {
+    const section = sections[i + 1],
+      github_url = github_repos[i].html_url;
+
+    section.querySelector("div.title").firstElementChild.onclick = () => visit_url(github_url);
+    section.querySelector("button.github").onclick = () => visit_url(github_url);
+  }
+}
+
 async function handle_sections() {
   // orders and removes repos not in repo_order
   github_repos = repo_order
@@ -131,7 +154,8 @@ async function handle_sections() {
 
   // creating required number of sections & filling them
   create_sections();
-  fill_sections();
+  await fill_sections();
+  setup_repo_listeners();
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
