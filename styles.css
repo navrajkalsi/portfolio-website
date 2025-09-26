@@ -24,6 +24,8 @@ html {
 
 section,
 #waves {
+  display: flex;
+  flex-direction: column;
   width: 100vw;
   height: 100vh;
   flex-shrink: 0;
@@ -64,9 +66,7 @@ h1 {
 }
 
 /* each view should only be of a whole section */
-section {
-  display: flex;
-  flex-direction: column;
+section.project {
   align-content: center;
   justify-content: space-between;
   padding: 2.5%;
@@ -103,9 +103,8 @@ section {
         font: normal 600 clamp(0.75rem, 1.25vw, 2rem) "Oswald", sans-serif;
       }
 
-      img {
+      svg {
         height: 100%;
-        aspect-ratio: 1/1;
       }
     }
 
@@ -133,8 +132,6 @@ section {
 }
 
 section.hero {
-  display: flex !important;
-  flex-direction: column !important;
   justify-content: space-evenly;
   text-align: center;
 
@@ -184,6 +181,51 @@ section.hero {
     }
   }
 }
+
+section.about {
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  padding: 2.5%;
+
+  div.about-text {
+    line-height: 2;
+  }
+
+  div.socials {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: fit-content;
+    width: 100%;
+
+    ul {
+      height: fit-content;
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      margin: 2.5%;
+
+      li {
+        cursor: pointer;
+        height: fit-content;
+        width: fit-content;
+        transition: all 0.5s ease;
+
+        svg {
+          height: clamp(5rem, 5vw, 7.5rem);
+          fill: white;
+        }
+      }
+
+      li:hover {
+        scale: 105%;
+      }
+    }
+  }
+}
+
 
 .highlight-text {
   text-wrap: nowrap;

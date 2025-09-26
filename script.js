@@ -7,7 +7,13 @@ const user_url = "https://api.github.com/users/navrajkalsi",
   ],
   repo_url_prefix = "https://api.github.com/repos/navrajkalsi",
   content_url_prefix = "https://raw.githubusercontent.com/navrajkalsi",
-  github_profile = "https://www.github.com/navrajkalsi";
+  socials = {
+    "github": "https://www.github.com/navrajkalsi",
+    "linkedin": "https://linkedin.com/in/navrajkalsi",
+    "reddit": "https://reddit.com/u/navrajkalsi",
+    "twitter": "https://twitter.com/navrajkalsi",
+    "email": "mailto:navrajkalsi.com"
+  };
 
 let github_repos, // will contain the repos from github in JSON
   nothing;
@@ -51,9 +57,6 @@ function visit_url(url) {
 
 // anything to deal with hero section
 async function handle_hero() {
-  // click event for name
-  document.querySelector("section.hero").querySelector("h1").onclick = () => visit_url(github_profile);
-
   // Avatar
   const user_json = await fetch_json(user_url);
   document.querySelector("img.avatar").src = await user_json.avatar_url;
@@ -76,21 +79,23 @@ function get_default_branch(id) {
 
 // creates i copies of last demo section, including the said section
 function create_sections() {
-  const sample_section = document.querySelectorAll("section")[1];
+  const sample_section = document.querySelector("section.project"),
+    about_section = document.querySelector("section.about");
 
   // creating and appending new sections
   for (let i = 1; i < github_repos.length; i++) {
     const new_section = sample_section.cloneNode(true);
-    document.getElementById("scroll-content").appendChild(new_section);
+    // inserting before the about section
+    document.getElementById("scroll-content").insertBefore(new_section, about_section);
   }
 }
 
 // fills all the sections in order of the array declared on top
 async function fill_sections() {
-  const sections = document.querySelectorAll("section");
+  const sections = document.querySelectorAll("section.project");
 
   for (let i = 0; i < repo_order.length; i++) {
-    const section = sections[i + 1],
+    const section = sections[i],
       demo_div = section.querySelector("div.demo"),
       repo = github_repos[i].name,
       branch = get_default_branch(github_repos[i].id),
@@ -134,10 +139,10 @@ async function fill_sections() {
 }
 
 function setup_repo_listeners() {
-  const sections = document.querySelectorAll("section");
+  const sections = document.querySelectorAll("section.project");
 
   for (let i = 0; i < repo_order.length; i++) {
-    const section = sections[i + 1],
+    const section = sections[i],
       github_url = github_repos[i].html_url;
 
     section.querySelector("div.title").firstElementChild.onclick = () => visit_url(github_url);
