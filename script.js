@@ -64,8 +64,7 @@ async function handle_hero() {
 
 // assigns global var github_repos to JSON object containing all public repos
 async function fill_repos() {
-  github_repos = await fetch(repos_url);
-  github_repos = await github_repos.json();
+  github_repos = await fetch_json(repos_url);
 }
 
 // returns the default branch name of a repo, given the id from repos json
@@ -77,7 +76,7 @@ function get_default_branch(id) {
       continue;
 }
 
-// creates i copies of last demo section, including the said section
+// creates github_repos.length copies of sample section, including the said section
 function create_sections() {
   const sample_section = document.querySelector("section.project"),
     about_section = document.querySelector("section.about");
@@ -94,7 +93,7 @@ function create_sections() {
 async function fill_sections() {
   const sections = document.querySelectorAll("section.project");
 
-  for (let i = 0; i < repo_order.length; i++) {
+  for (let i = 0; i < github_repos.length; i++) {
     const section = sections[i],
       demo_div = section.querySelector("div.demo"),
       repo = github_repos[i].name,
@@ -130,8 +129,10 @@ async function fill_sections() {
       const gif_response = await fetch(`${content_url_prefix}/${repo}/${branch}/media/demo.gif`);
 
       // error
-      if (gif_response.status >= 400)
+      if (gif_response.status >= 400) {
+        console.clear();
         section.removeChild(demo_div);
+      }
       else
         demo_div.firstElementChild.src = `${content_url_prefix}/${repo}/${branch}/media/demo.gif`;
     }
@@ -141,7 +142,7 @@ async function fill_sections() {
 function setup_repo_listeners() {
   const sections = document.querySelectorAll("section.project");
 
-  for (let i = 0; i < repo_order.length; i++) {
+  for (let i = 0; i < github_repos.length; i++) {
     const section = sections[i],
       github_url = github_repos[i].html_url;
 
