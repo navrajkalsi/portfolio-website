@@ -86,14 +86,14 @@ section.project {
     button.github {
       background-color: #eee;
       margin: auto 0;
-      height: clamp(2.5rem, 8vw, 6rem);
-      border-radius: clamp(2.5rem, 8vw, 6rem);
-      padding: 1em;
-      gap: 1rem;
+      height: clamp(2.5rem, 12vw, 6rem);
+      border-radius: clamp(2.5rem, 12vw, 6rem);
+      padding: 1%;
+      gap: 1em;
       display: flex;
       align-items: center;
       justify-content: space-evenly;
-      border: solid black 0.5em;
+      border: solid black 0.4em;
       outline: none;
       cursor: pointer;
       transition: all 0.25s ease;
@@ -101,7 +101,7 @@ section.project {
 
       span {
         text-wrap: nowrap;
-        font: normal 600 clamp(0.75rem, 1.25vw, 2rem) "Oswald", sans-serif;
+        font: normal 600 clamp(1rem, 1.25vw, 2rem) "Oswald", sans-serif;
       }
 
       svg {
