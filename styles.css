@@ -85,6 +85,7 @@ section.project {
 
     button.github {
       background-color: #eee;
+      color: inherit;
       margin: auto 0;
       height: clamp(2.5rem, 12vw, 6rem);
       border-radius: clamp(2.5rem, 12vw, 6rem);

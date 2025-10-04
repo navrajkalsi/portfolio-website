@@ -14,13 +14,29 @@ function snapToSection(section) {
 
 function animate() {
   const sections = gsap.utils.toArray("section");
-  sections.forEach((section, i) => {
-    ScrollTrigger.create({
-      trigger: section,
-      start: "top center",
-      onEnter: () => snapToSection(section),
-      onEnterBack: () => snapToSection(section)
-    });
+
+  ScrollTrigger.matchMedia({
+    // for desktop (with snapping)
+    "(hover: hover) and (pointer: fine)": function() {
+      sections.forEach((section) => {
+        ScrollTrigger.create({
+          trigger: section,
+          start: "top center",
+          onEnter: () => snapToSection(section),
+          onEnterBack: () => snapToSection(section)
+        });
+      });
+    },
+
+    // for mobile (no snapping)
+    "(hover: none) and (pointer: coarse)": function() {
+      sections.forEach((section) => {
+        ScrollTrigger.create({
+          trigger: section,
+          start: "top center"
+        });
+      });
+    }
   });
 
   const highlight_texts = document.querySelectorAll(".highlight-text");
