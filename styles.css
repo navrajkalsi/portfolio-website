@@ -1,6 +1,8 @@
 :root {
   --text-color-light: #ddd;
+  --text-color-dark: #141414;
   --background-light: #141414;
+  --background-dark: #ddd;
   --accent: #fa1919;
   --primary-font: normal 500 clamp(1.25rem, 2vw, 2rem) "Oswald", sans-serif;
   --secondary-font: normal 500 clamp(1.5rem, 4vw, 3rem) "Outfit", sans-serif;
@@ -85,7 +87,7 @@ section.project {
 
     button.github {
       background-color: #eee;
-      color: inherit;
+      color: var(--text-color-dark);
       margin: auto 0;
       height: clamp(2.5rem, 12vw, 6rem);
       border-radius: clamp(2.5rem, 12vw, 6rem);

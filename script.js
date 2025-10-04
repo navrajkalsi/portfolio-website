@@ -83,9 +83,11 @@ function create_sections() {
 
   // creating and appending new sections
   for (let i = 1; i < github_repos.length; i++) {
-    const new_section = sample_section.cloneNode(true);
-    // inserting before the about section
+    const new_section = sample_section.cloneNode(true),
+      hr = document.createElement("hr");
+    // inserting before the about section and a hr
     document.getElementById("scroll-content").insertBefore(new_section, about_section);
+    document.getElementById("scroll-content").insertBefore(hr, about_section);
   }
 }
 
