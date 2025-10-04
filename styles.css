@@ -2,7 +2,7 @@
   --text-color-light: #ddd;
   --background-light: #141414;
   --accent: #fa1919;
-  --primary-font: normal 500 clamp(1rem, 2vw, 2rem) "Oswald", sans-serif;
+  --primary-font: normal 500 clamp(1.25rem, 2vw, 2rem) "Oswald", sans-serif;
   --secondary-font: normal 500 clamp(1.5rem, 4vw, 3rem) "Outfit", sans-serif;
 }
 
@@ -67,9 +67,10 @@ h1 {
 
 /* each view should only be of a whole section */
 section.project {
+  flex: 1 1 auto;
   align-content: center;
   justify-content: space-between;
-  padding: 2.5%;
+  padding: 1% 2.5%;
   gap: 2.5%;
 
   div.title {
@@ -115,19 +116,26 @@ section.project {
   }
 
   div.demo {
-    flex: 1 1 auto;
-    box-shadow: 0 0 25px black;
-    margin: 2% auto;
+    margin: 2%;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
 
     img {
-      height: 100%;
+      max-height: 100%;
       max-width: 100%;
+      flex: 1 1 auto;
+      object-fit: contain;
     }
   }
 
   div.description {
-    flex: 0 0 auto;
-    margin-bottom: 5%;
+    margin-bottom: 2.5%;
+    text-align: center;
   }
 }
 
@@ -158,19 +166,23 @@ section.hero {
     .avatar-container {
       height: 100%;
       aspect-ratio: 1/1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       .avatar {
         /* filter: grayscale(1); */
         box-shadow: 0 0 50px black;
-        height: 100%;
+        max-width: 40vw;
         width: 100%;
+        aspect-ratio: 1/1;
         border-radius: 50%;
         transition: all 0.3s ease;
       }
 
       .avatar:hover {
         border-radius: 50px;
-        scale: 95%;
+        scale: 97.5%;
       }
     }
 
@@ -214,7 +226,7 @@ section.about {
         transition: all 0.5s ease;
 
         svg {
-          height: clamp(5rem, 5vw, 7.5rem);
+          height: clamp(2.5rem, 5vw, 7.5rem);
           fill: white;
         }
       }
@@ -253,4 +265,19 @@ section.about {
 
 .highlight-text:hover::after {
   width: 0;
+}
+
+@media (max-width: 576px) {
+
+  section {
+    justify-content: space-evenly !important;
+  }
+
+  div.info {
+    flex-direction: column !important;
+  }
+
+  div.demo {
+    height: fit-content !important;
+  }
 }

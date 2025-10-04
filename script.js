@@ -3,7 +3,7 @@ const user_url = "https://api.github.com/users/navrajkalsi",
   repo_order = [ // only change this to order the repos
     "server-c",
     "forexpy",
-    ".dotfiles"
+    // ".dotfiles"
   ],
   repo_url_prefix = "https://api.github.com/repos/navrajkalsi",
   content_url_prefix = "https://raw.githubusercontent.com/navrajkalsi",
