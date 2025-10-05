@@ -296,6 +296,10 @@ section.about {
     flex-direction: column !important;
   }
 
+  div.server-text {
+    margin: 5% !important;
+  }
+
   div.demo {
     height: fit-content !important;
   }
