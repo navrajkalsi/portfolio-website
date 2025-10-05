@@ -52,7 +52,7 @@ h2 {
 }
 
 h1 {
-  font-size: clamp(2.5rem, 8vw, 6rem);
+  font-size: clamp(3rem, 8vw, 6rem);
 }
 
 hr {
@@ -288,6 +288,10 @@ section.about {
 
 @media (max-width: 576px) {
 
+  .highlight-text:after {
+    height: 6px !important;
+  }
+
   section {
     justify-content: space-evenly !important;
   }
@@ -297,7 +301,7 @@ section.about {
   }
 
   div.server-text {
-    margin: 5% !important;
+    margin: 10% !important;
   }
 
   div.demo {
