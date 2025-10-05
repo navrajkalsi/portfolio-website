@@ -24,8 +24,7 @@ html {
   line-height: 1.5;
 }
 
-section,
-#waves {
+section {
   display: flex;
   flex-direction: column;
   width: 100vw;
@@ -39,6 +38,13 @@ body {
   font: var(--primary-font);
 }
 
+canvas#background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
 h1,
 h2 {
   font: var(--secondary-font);
@@ -48,23 +54,18 @@ h1 {
   font-size: clamp(2.5rem, 8vw, 6rem);
 }
 
+hr {
+  display: none;
+}
+
 .scale-up {
   opacity: 0;
   scale: 0.8;
 }
 
-#waves {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  pointer-events: none;
-
-  img {
-    opacity: 0.25;
-    width: 100%;
-    height: 100%;
-  }
+div#scroll-wrapper,
+div#scroll-content {
+  background: transparent;
 }
 
 /* each view should only be of a whole section */
@@ -282,5 +283,9 @@ section.about {
 
   div.demo {
     height: fit-content !important;
+  }
+
+  hr {
+    display: block !important;
   }
 }

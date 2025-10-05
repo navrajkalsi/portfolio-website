@@ -12,8 +12,10 @@ function snapToSection(section) {
   smoother.scrollTo(section, true);
 }
 
-function animate() {
+// entry function
+function setup_gsap() {
   const sections = gsap.utils.toArray("section");
+  console.log(sections);
 
   ScrollTrigger.matchMedia({
     // for desktop (with snapping)
