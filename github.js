@@ -91,6 +91,9 @@ async function fill_sections() {
       branch = get_default_branch(github_repos[i].id),
       description = github_repos[i].description;
 
+    // setting id of each seciton to repo name, to create custom snapping and scrolling
+    section.id = repo;
+
     // setting repo name
     section.querySelector("div.title").firstElementChild.textContent = repo;
 

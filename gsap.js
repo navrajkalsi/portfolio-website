@@ -6,10 +6,21 @@ const smoother = ScrollSmoother.create({
   smooth: 1,
   effects: true,
   smoothTouch: 0.1,
+}),
+  timeline = gsap.timeline();
+
+ScrollTrigger.config({
+  limitCallbacks: true,
+  ignoreMobileResize: true
 });
 
 function snapToSection(section) {
   smoother.scrollTo(section, true);
+}
+
+function snapServerSection() {
+  // change the index in future to the server project index
+  smoother.scrollTo(document.getElementById("server-c"), true);
 }
 
 // entry function
@@ -23,6 +34,7 @@ function setup_gsap() {
         ScrollTrigger.create({
           trigger: section,
           start: "top center",
+          end: "bottom center",
           onEnter: () => snapToSection(section),
           onEnterBack: () => snapToSection(section)
         });
@@ -48,17 +60,17 @@ function setup_gsap() {
     ScrollTrigger.create({
       trigger: elm,
       start: "top center",
+      end: "bottom top",
       toggleClass: { targets: elm, className: "underline" },
       once: false,
     });
   });
 
-  gsap.from(".reveal-y", { opacity: 0, y: 100, duration: 0.5, delay: 0.25 });
-  gsap.to(".scale-up", { opacity: 1, scale: 1, duration: 1, delay: 0.75 });
-  gsap.from(".info", { opacity: 0, y: 100, duration: 0.75, delay: 1.75 });
-  gsap.to("#background", { opacity: 1, duration: 0.75, delay: 1.75 });
+  timeline.from(".reveal-y", { opacity: 0, y: 100, duration: 0.5 }, 0.25)
+    .call(() => document.querySelector(".highlight-text").classList.add("underline"))
+    .to(".scale-up", { opacity: 1, scale: 1, duration: 1 })
+    .from(".info", { opacity: 0, y: 100, duration: 0.75 }, "-=0.25")
+    .to("#background", { opacity: 1, duration: 0.75 }, "-=0.25")
+    .to(".server-text", { opacity: 1, duration: 0.5 }, "-=0.25");
 
-  setTimeout(() => {
-    document.querySelector(".highlight-text").classList.add("underline");
-  }, 750);
 };
