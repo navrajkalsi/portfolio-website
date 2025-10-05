@@ -15,7 +15,6 @@ function snapToSection(section) {
 // entry function
 function setup_gsap() {
   const sections = gsap.utils.toArray("section");
-  console.log(sections);
 
   ScrollTrigger.matchMedia({
     // for desktop (with snapping)
@@ -54,9 +53,10 @@ function setup_gsap() {
     });
   });
 
-  gsap.from(".reveal-y", { opacity: 0, y: 100, duration: 0.5 });
-  gsap.to(".scale-up", { opacity: 1, scale: 1, duration: 1, delay: 0.5 });
-  gsap.from(".info", { opacity: 0, y: 100, duration: 0.75, delay: 1.5 });
+  gsap.from(".reveal-y", { opacity: 0, y: 100, duration: 0.5, delay: 0.25 });
+  gsap.to(".scale-up", { opacity: 1, scale: 1, duration: 1, delay: 0.75 });
+  gsap.from(".info", { opacity: 0, y: 100, duration: 0.75, delay: 1.75 });
+  gsap.to("#background", { opacity: 1, duration: 0.75, delay: 1.75 });
 
   setTimeout(() => {
     document.querySelector(".highlight-text").classList.add("underline");
