@@ -5,12 +5,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="This is where I showcase my projects, alongside Github." />
+  <meta name="author" content="Navraj Kalsi" />
   <!-- Open Graph Tags -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Navraj Kalsi's Website." />
   <meta property="og:description" content="This is where I showcase my projects, alongside Github." />
   <meta property="og:image" content="https://navrajkalsi.com/demo.png" />
-  <meta property="og:url" content="https://navrajkalsi.com/" />
+  <meta property="og:url" content="https://navrajkalsi.com" />
   <title>Navraj Kalsi's Website</title>
   <link rel="icon" href="icon.ico" />
   <link rel="canonical" href="https://navrajkalsi.com" />
@@ -35,8 +36,8 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
       background: #141414;
       color: white;
       display: flex;
@@ -44,7 +45,7 @@
       justify-content: center;
       flex-direction: column;
       z-index: 100;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
+      transition: all 0.5s ease;
     }
 
     #spinner {
