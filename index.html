@@ -4,15 +4,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Navraj Kalsi's Website. This is where I showcase my projects, alongside Github." />
+  <meta name="description" content="This is where I showcase my projects, alongside Github." />
   <!-- Open Graph Tags -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Navraj Kalsi's Website." />
   <meta property="og:description" content="This is where I showcase my projects, alongside Github." />
   <meta property="og:image" content="https://navrajkalsi.com/demo.png" />
   <meta property="og:url" content="https://navrajkalsi.com/" />
-  <link rel="icon" href="icon.ico" />
   <title>Navraj Kalsi's Website</title>
+  <link rel="icon" href="icon.ico" />
   <link rel="canonical" href="https://navrajkalsi.com" />
   <link rel="stylesheet" href="styles.css" />
   <script src="script.js"></script>
@@ -63,7 +63,7 @@
       }
     }
 
-    #loader.hidden {
+    .hidden {
       opacity: 0;
       visibility: hidden;
     }
@@ -79,7 +79,7 @@
   <canvas id="background"></canvas>
 
   <div id="scroll-wrapper">
-    <div id="scroll-content">
+    <div id="scroll-content" class="hidden">
       <section class="hero active">
         <h2 class="reveal-y">Hello,</h2>
         <br>
@@ -103,9 +103,9 @@
         </div>
 
         <div class="server-text">
-          This site is running on a
-          <span onclick="snapServerSection()">custom web server I built in C</span>
-          , running on an AWS instance.
+          This site was served by a
+          <span onclick="snapServerSection()">custom web server I built in C</span>,
+          running on an AWS instance.
         </div>
       </section>
 

@@ -17,4 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   animate_background();
 });
 
-window.onload = async () => document.getElementById("loader").classList.add("hidden");
+window.onload = async () => {
+  document.getElementById("loader").classList.add("hidden");
+  document.getElementById("scroll-content").classList.remove("hidden");
+}
