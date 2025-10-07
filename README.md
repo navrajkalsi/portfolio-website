@@ -1,6 +1,6 @@
 # Portfolio Website
 
-![Website Demo](./demo.png)
+[![Website Demo](./demo.png)](https://navrajkalsi.com)
 
 Personal portfolio website.
 
