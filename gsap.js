@@ -81,6 +81,4 @@ function setup_gsap() {
     .from(".info", { opacity: 0, y: 100, duration: 0.75 }, "-=0.25")
     .to("#background", { opacity: 1, duration: 0.75 }, "-=0.25")
     .to(".server-text", { opacity: 1, duration: 0.5 }, "-=0.25");
-
-  console.log(scrollTriggers);
 };
