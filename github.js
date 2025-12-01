@@ -1,6 +1,7 @@
 const user_url = "https://api.github.com/users/navrajkalsi",
   repos_url = `${user_url}/repos`,
   repo_order = [ // only change this to order the repos
+    "proxy-c",
     "server-c",
     "forexpy",
     // ".dotfiles"
