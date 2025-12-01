@@ -29,7 +29,7 @@ function snapServerSection() {
 
   // need timout, as snapping breaks cause the scrolltriggers kick in at the same time as the scroll is about to start
   for (let scrollTrigger of scrollTriggers)
-    setTimeout(scrollTrigger.enable, 250);
+    setTimeout(scrollTrigger.enable, 500);
 }
 
 // entry function
